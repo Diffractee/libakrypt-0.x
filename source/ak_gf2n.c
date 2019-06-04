@@ -111,8 +111,8 @@
 /* ----------------------------------------------------------------------------------------------- */
  void ak_gf256_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y )
 {
- int i = 0, g = 0, n = 0;
- ak_uint64 t,
+ int i = 0, g = 0;
+ ak_uint64 t, n,
 #ifdef LIBAKRYPT_LITTLE_ENDIAN
   s0 = ((ak_uint64 *)x)[0], s1 = ((ak_uint64 *)x)[1],
   s2 = ((ak_uint64 *)x)[2], s3 = ((ak_uint64 *)x)[3];
@@ -190,8 +190,8 @@
 /* ----------------------------------------------------------------------------------------------- */
  void ak_gf512_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y )
 {
- int i = 0, g = 0, n = 0;
- ak_uint64 t,
+ int i = 0, g = 0;
+ ak_uint64 t, n,
 #ifdef LIBAKRYPT_LITTLE_ENDIAN
   s0 = ((ak_uint64 *)x)[0], s1 = ((ak_uint64 *)x)[1],
   s2 = ((ak_uint64 *)x)[2], s3 = ((ak_uint64 *)x)[3],
