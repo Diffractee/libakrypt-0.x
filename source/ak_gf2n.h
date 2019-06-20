@@ -28,34 +28,35 @@
  void ak_gf64_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y );
 /*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{128}}\f$. */
  void ak_gf128_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y );
+/*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{256}}\f$. */
+ void ak_gf256_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y );
+/*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{512}}\f$. */
+ void ak_gf512_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y );
 
 #ifdef LIBAKRYPT_HAVE_BUILTIN_CLMULEPI64
 /*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{64}}\f$. */
  void ak_gf64_mul_pcmulqdq( ak_pointer z, ak_pointer x, ak_pointer y );
 /*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{128}}\f$. */
  void ak_gf128_mul_pcmulqdq( ak_pointer z, ak_pointer a, ak_pointer b );
+/*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{256}}\f$. */
+ void ak_gf256_mul_pcmulqdq( ak_pointer z, ak_pointer a, ak_pointer b );
+/*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{512}}\f$. */
+ void ak_gf512_mul_pcmulqdq( ak_pointer z, ak_pointer a, ak_pointer b );
 
  #define ak_gf64_mul ak_gf64_mul_pcmulqdq
  #define ak_gf128_mul ak_gf128_mul_pcmulqdq
+ #define ak_gf256_mul ak_gf256_mul_pcmulqdq
+ #define ak_gf512_mul ak_gf512_mul_pcmulqdq
 #else
  #define ak_gf64_mul ak_gf64_mul_uint64
  #define ak_gf128_mul ak_gf128_mul_uint64
-#endif
-
-/* ----------------------------------------------------------------------------------------------- */
-//TODO: Сделать и для PCLMULQDQ после тестов.
-
-/*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{256}}\f$. */
- void ak_gf256_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y );
-/*! \brief Умножение двух элементов поля \f$ \mathbb F_{2^{512}}\f$. */
- void ak_gf512_mul_uint64( ak_pointer z, ak_pointer x, ak_pointer y );
-
-//TODO:
  #define ak_gf256_mul ak_gf256_mul_uint64
  #define ak_gf512_mul ak_gf512_mul_uint64
+#endif
 
 //TODO: Тестов на эти функции пока нет. Сделать.
-//TODO: Тестов на PCLMULQDQ тоже пока нет.
+//TODO: Тестов на PCLMULQDQ тоже пока нет. Сделать
+
 /* ----------------------------------------------------------------------------------------------- */
 
 /*! \brief Функция тестирования корректности реализации операций умножения в полях характеристики 2. */
