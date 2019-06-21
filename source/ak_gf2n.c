@@ -391,6 +391,7 @@
 
      a1a0.m128i_u64[0] = ((ak_uint64 *)a)[0];   a1a0.m128i_u64[1] = ((ak_uint64 *)a)[1];
      a3a2.m128i_u64[0] = ((ak_uint64 *)a)[2];   a3a2.m128i_u64[1] = ((ak_uint64 *)a)[3];
+
      b1b0.m128i_u64[0] = ((ak_uint64 *)b)[0];   b1b0.m128i_u64[1] = ((ak_uint64 *)b)[1];
      b3b2.m128i_u64[0] = ((ak_uint64 *)b)[2];   b3b2.m128i_u64[1] = ((ak_uint64 *)b)[3];
 
@@ -429,7 +430,7 @@
      r1 = a0b1[0] ^ a1b0[0] ^ a0b0[1];                                                      //sum
      r1^= (r5 << 10) ^ (r5 << 5) ^ (r5 << 2) ^ r5 ^ (r4 >> 54) ^ (r4 >> 59) ^ (r4 >> 62);   //mod
      r0 = a0b0[0];                                                                          //sum
-     r1^= (r4 << 10) ^ (r4 << 5) ^ (r4 << 2) ^ r4;                                          //mod
+     r0^= (r4 << 10) ^ (r4 << 5) ^ (r4 << 2) ^ r4;                                          //mod
 
      ((ak_uint64 *)z)[0] = r0;
      ((ak_uint64 *)z)[1] = r1;
@@ -438,6 +439,7 @@
 #else
      __m128i a1a0 = _mm_set_epi64x(((ak_uint64 *)a)[1], ((ak_uint64 *)a)[0]);
      __m128i a3a2 = _mm_set_epi64x(((ak_uint64 *)a)[3], ((ak_uint64 *)a)[2]);
+
      __m128i b1b0 = _mm_set_epi64x(((ak_uint64 *)b)[1], ((ak_uint64 *)b)[0]);
      __m128i b3b2 = _mm_set_epi64x(((ak_uint64 *)b)[3], ((ak_uint64 *)b)[2]);
 
@@ -476,8 +478,7 @@
      r1 = a0b1[0] ^ a1b0[0] ^ a0b0[1];                                                      //sum
      r1^= (r5 << 10) ^ (r5 << 5) ^ (r5 << 2) ^ r5 ^ (r4 >> 54) ^ (r4 >> 59) ^ (r4 >> 62);   //mod
      r0 = a0b0[0];                                                                          //sum
-     r1^= (r4 << 10) ^ (r4 << 5) ^ (r4 << 2) ^ r4;                                          //mod
-
+     r0^= (r4 << 10) ^ (r4 << 5) ^ (r4 << 2) ^ r4;                                          //mod
 
      ((ak_uint64 *)z)[0] = r0;
      ((ak_uint64 *)z)[1] = r1;
@@ -503,6 +504,7 @@ void ak_gf512_mul_pcmulqdq( ak_pointer z, ak_pointer a, ak_pointer b )
      a3a2.m128i_u64[0] = ((ak_uint64 *)a)[2];   a3a2.m128i_u64[1] = ((ak_uint64 *)a)[3];
      a5a4.m128i_u64[0] = ((ak_uint64 *)a)[4];   a5a4.m128i_u64[1] = ((ak_uint64 *)a)[5];
      a7a6.m128i_u64[0] = ((ak_uint64 *)a)[6];   a7a6.m128i_u64[1] = ((ak_uint64 *)a)[7];
+
      b1b0.m128i_u64[0] = ((ak_uint64 *)b)[0];   b1b0.m128i_u64[1] = ((ak_uint64 *)b)[1];
      b3b2.m128i_u64[0] = ((ak_uint64 *)b)[2];   b3b2.m128i_u64[1] = ((ak_uint64 *)b)[3];
      b5b4.m128i_u64[0] = ((ak_uint64 *)b)[4];   b5b4.m128i_u64[1] = ((ak_uint64 *)b)[5];
@@ -961,7 +963,6 @@ void ak_gf512_mul_pcmulqdq( ak_pointer z, ak_pointer a, ak_pointer b )
 #endif
  return ak_true;
 }
-
 
 /* ----------------------------------------------------------------------------------------------- */
  bool_t ak_gfn_multiplication_test( void )
